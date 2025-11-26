@@ -33,12 +33,15 @@ const Navbar = () => {
         <li>
           <Link href="/addProduct">Add Products</Link>
         </li>
+        <li>
+          <Link href="/manageProduct">Manage Product</Link>
+        </li>
       </div>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm w-7xl mx-auto">
+    <div className="navbar bg-base-100 shadow-sm md:w-7xl mx-auto">
       {/* Left */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -79,22 +82,27 @@ const Navbar = () => {
       <div className="navbar-end gap-2">
         {user ? (
           <>
-            {/* User photo */}
-            {user.photoURL && (
-              <img
-                src={user.photoURL}
-                alt="user"
-                className="w-10 h-10 rounded-full"
-              />
-            )}
-
-            {/* User name */}
-            <span className="font-semibold">{user.displayName}</span>
-
-            {/* Logout button */}
-            <button onClick={handleLogout} className="btn btn-error">
-              Logout
-            </button>
+            <details className="dropdown mr-15">
+              <summary className="btn m-1 mr-15">
+                <img src={user.photoURL} className="h-[30px] w-[30px] rounded-2xl" alt="" />
+              </summary>
+              <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm py-5">
+                <li>
+                  <span className="font-semibold">{user.displayName}</span>
+                </li>
+                <li>
+                  <Link href="/products">Products</Link>
+                </li>
+                <li>
+                  <Link href="/addProduct">Add Products</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout} className="btn btn-error">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </details>
           </>
         ) : (
           <>
