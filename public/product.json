@@ -1,0 +1,50 @@
+[
+  {
+    "image": "https://i.ibb.co.com/J0nZ6yH/headphone.jpg",
+    "title": "AeroSound Pro Wireless Headphones",
+    "short_description": "Bluetooth 5.2, active noise cancellation, 30-hour battery life...",
+    "price": "৳6499"
+  },
+  {
+    "image": "https://i.ibb.co.com/VFCzgXK/smart-Watch.jpg",
+    "title": "PulseFit X2 Smartwatch",
+    "short_description": "Heart-rate & SpO2 tracking, built-in GPS, lightweight aluminum body...",
+    "price": "৳4299"
+  },
+  {
+    "image": "https://i.ibb.co.com/J8ZBkyp/bag.jpg",
+    "title": "TrailMate 25L Daypack",
+    "short_description": "Water-resistant fabric, 15-inch laptop sleeve, breathable back panel...",
+    "price": "৳1899"
+  },
+  {
+    "image": "https://i.ibb.co.com/7xKsR88Q/maker.jpg",
+    "title": "BrewPlus Compact Espresso Maker",
+    "short_description": "15-bar pump, fast heating system, attached milk frother...",
+    "price": "৳7750"
+  },
+  {
+    "image": "https://i.ibb.co.com/4ZpMpV5X/nike-Stride.jpg",
+    "title": "StrideRun Ultra 2",
+    "short_description": "Breathable mesh upper, responsive midsole, ideal for daily training...",
+    "price": "৳3250"
+  },
+  {
+    "image": "https://i.ibb.co.com/kgddbpKT/mouse.jpg",
+    "title": "QuikClick Ergonomic Wireless Mouse",
+    "short_description": "Silent clicks, ergonomic design, adjustable DPI up to 3200...",
+    "price": "৳899"
+  },
+  {
+    "image": "https://i.ibb.co.com/Kzzw0NQy/ibm.jpg",
+    "title": "FlashCore 1TB Portable SSD",
+    "short_description": "Up to 1000MB/s NVMe speed, durable metal casing, pocket-sized...",
+    "price": "৳8999"
+  },
+  {
+    "image": "https://i.ibb.co.com/pjxFRrxc/ledLamp.jpg",
+    "title": "LumaDesk Smart LED Lamp",
+    "short_description": "Adjustable brightness & color temp, wireless charging base...",
+    "price": "৳1499"
+  }
+]
