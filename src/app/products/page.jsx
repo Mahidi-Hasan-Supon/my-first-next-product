@@ -2,22 +2,24 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
-const Products =  () => {
+const Products = () => {
   const [products, setProducts] = useState([]);
-const [searchText, setSearchText] = useState("");
- const handleSearch=(e)=>{
-   e.preventDefault()
-   const search_text = e.target.search.value  
-   console.log(search_text);
-   const filtered = products.filter(product=>product.title.toLowerCase().includes(search_text.toLowerCase()))
-   setProducts(filtered)
-  }
+  const [searchText, setSearchText] = useState("");
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const search_text = e.target.search.value;
+    console.log(search_text);
+    const filtered = products.filter((product) =>
+      product.title.toLowerCase().includes(search_text.toLowerCase())
+    );
+    setProducts(filtered);
+  };
 
-useEffect(() => {
-  fetch("http://localhost:5000/products") // server থেকে data
-    .then(res => res.json())
-    .then(data => setProducts(data));
-}, []);
+  useEffect(() => {
+    fetch("https://my-product-next-server.vercel.app/products") // server থেকে data
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
   return (
     <div>

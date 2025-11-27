@@ -18,7 +18,9 @@ const ManageProduct = () => {
   }, []);
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/products?email=${user?.email}`)
+      fetch(
+        `https://my-product-next-server.vercel.app/products?email=${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
@@ -38,7 +40,7 @@ const ManageProduct = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/products/${_id}`, {
+        fetch(`https://my-product-next-server.vercel.app/products/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -110,7 +112,6 @@ const ManageProduct = () => {
                     <div className="modal-box">
                       <form>
                         <fieldset className="fieldset">
-
                           <input
                             type="text"
                             name="title"
@@ -124,7 +125,7 @@ const ManageProduct = () => {
                             className="textarea"
                             name="sort_description"
                             placeholder="Sort description"
-                             defaultValue={product.sort_description}
+                            defaultValue={product.sort_description}
                             readOnly
                           ></textarea>
 
@@ -132,27 +133,25 @@ const ManageProduct = () => {
                             className="textarea"
                             name="full_description"
                             placeholder="Full description"
-                             defaultValue={product.full_description}
+                            defaultValue={product.full_description}
                             readOnly
                           ></textarea>
-
 
                           <input
                             type="number"
                             name="price"
                             className="input"
                             placeholder="Price"
-                             defaultValue={product.price}
+                            defaultValue={product.price}
                             readOnly
                           />
-
 
                           <input
                             type="text"
                             name="photo"
                             className="input"
                             placeholder="Image URL"
-                             defaultValue={product.photo}
+                            defaultValue={product.photo}
                             readOnly
                           />
 
@@ -164,7 +163,6 @@ const ManageProduct = () => {
                             defaultValue={user?.email || ""}
                             readOnly
                           />
-                       
                         </fieldset>
                       </form>
                       <div className="modal-action">

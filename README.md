@@ -52,12 +52,12 @@ GET /products/:id
 📁 Folder Structure
 my-first-next-product/
 │── app/
-│   ├── layout.js
-│   ├── globals.css
-│   ├── page.js
-│   └── products/
-│        └── [productId]/
-│              └── page.js
+│ ├── layout.js
+│ ├── globals.css
+│ ├── page.js
+│ └── products/
+│ └── [productId]/
+│ └── page.js
 │
 │── components/
 │── public/
@@ -68,8 +68,7 @@ my-first-next-product/
 
 ফ্রন্টএন্ড .env.local:
 
-NEXT_PUBLIC_API_URL=http://localhost:5000
-
+NEXT_PUBLIC_API_URL=https://my-product-next-server.vercel.app
 
 ব্যাকএন্ড .env:
 
@@ -86,7 +85,6 @@ npm install
 Run development server
 npm run dev
 
-
 Server will start at:
 
 http://localhost:3000
@@ -100,10 +98,9 @@ cd my-product-next-server
 npm install
 npm start
 
-
 Backend runs at:
 
-http://localhost:5000
+https://my-product-next-server.vercel.app
 
 📚 Pages Explained
 Home Page
@@ -119,7 +116,6 @@ Product Details Page
 URL:
 
 /products/[productId]
-
 
 Features:
 

@@ -5,9 +5,9 @@ import { auth } from "../firebase/confing";
 import { onAuthStateChanged } from "firebase/auth";
 
 const AddProducts = () => {
-    const [user , setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
-      useEffect(() => {
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
@@ -23,22 +23,25 @@ const AddProducts = () => {
       full_description: e.target.full_description.value,
       price: e.target.price.value,
       photo: e.target.photo.value,
-      email:user?.email
+      email: user?.email,
     };
     console.log(product.photo);
 
     // Backend kaj
-    const res = await fetch("http://localhost:5000/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    });
+    const res = await fetch(
+      "https://my-product-next-server.vercel.app/products",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    );
 
     const data = await res.json();
     console.log("data:", data);
-    toast('Added Product')
+    toast("Added Product");
   };
 
   return (
@@ -85,7 +88,6 @@ const AddProducts = () => {
                 name="photo"
                 className="input"
                 placeholder="Image URL"
-                
               />
               <label className="label">Email</label>
               <input
@@ -93,7 +95,7 @@ const AddProducts = () => {
                 name="email"
                 className="input"
                 placeholder="Email"
-                defaultValue={user?.email || ''}
+                defaultValue={user?.email || ""}
                 readOnly
               />
               <button type="submit" className="btn btn-neutral mt-4">
