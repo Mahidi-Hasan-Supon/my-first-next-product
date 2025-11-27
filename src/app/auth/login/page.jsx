@@ -28,22 +28,53 @@ const Login = () => {
       return setError("Email & Password required!");
     }
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      toast.success("Login Successful!");
-      setError("");
-    } catch (err) {
-      toast.error(err.message);
-    }
+ try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    const token = await user.getIdToken();
+    document.cookie = `token=${token}; path=/;`;
+
+    toast.success("Login Successful!");
+
+    // 🔥 redirect to home
+    window.location.href = "/";
+
+  } catch (err) {
+    toast.error(err.message);
+  }
+
+  // try {
+  //   await signInWithEmailAndPassword(auth, email, password);
+  //   toast.success("Login Successful!");
+  //   setError("");
+  // } catch (err) {
+  //   toast.error(err.message);
+  // }
   };
 
   const handleGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      toast.success("Google Login Successful!");
-    } catch (err) {
-      toast.error(err.message);
-    }
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+
+    const token = await user.getIdToken();
+    document.cookie = `token=${token}; path=/;`;
+
+    toast.success("Google Login Successful!");
+
+    // 🔥 redirect
+    window.location.href = "/";
+
+  } catch (err) {
+    toast.error(err.message);
+  }
+    // try {
+    //   await signInWithPopup(auth, googleProvider);
+    //   toast.success("Google Login Successful!");
+    // } catch (err) {
+    //   toast.error(err.message);
+    // }
   };
 
   return (

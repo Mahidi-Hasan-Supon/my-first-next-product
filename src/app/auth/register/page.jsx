@@ -40,28 +40,72 @@ const Register = () => {
       return setError("Password must be at least 6 characters long!");
     }
 
-    try {
+
+     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
+      // Update Profile
       await updateProfile(res.user, {
         displayName: name,
         photoURL: photo,
       });
 
+      // Firebase token
+      const token = await res.user.getIdToken();
+
+      // Cookie Set (For Protected Routes)
+      document.cookie = `token=${token}; path=/;`;
+
       toast.success("Registration Successful!");
+
+      // 🔥 Redirect to home
+      window.location.href = "/";
+
     } catch (err) {
       toast.error(err.message);
     }
+
+     
+    // try {
+    //   const res = await createUserWithEmailAndPassword(auth, email, password);
+
+    //   await updateProfile(res.user, {
+    //     displayName: name,
+    //     photoURL: photo,
+    //   });
+
+    //   toast.success("Registration Successful!");
+    // } catch (err) {
+    //   toast.error(err.message);
+    // }
   };
 
   // Google Login
   const handleGoogle = async () => {
-    try {
+
+     try {
       const res = await signInWithPopup(auth, googleProvider);
-      toast.success("Login Successful");
+      const user = res.user;
+
+      const token = await user.getIdToken();
+      document.cookie = `token=${token}; path=/;`;
+
+      toast.success("Login Successful!");
+
+      // redirect to home
+      window.location.href = "/";
+
     } catch (err) {
       toast.error(err.message);
     }
+
+
+    // try {
+    //   const res = await signInWithPopup(auth, googleProvider);
+    //   toast.success("Login Successful");
+    // } catch (err) {
+    //   toast.error(err.message);
+    // }
   };
 
   return (

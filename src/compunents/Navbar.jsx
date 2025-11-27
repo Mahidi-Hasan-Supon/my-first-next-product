@@ -30,12 +30,16 @@ const Navbar = () => {
         <li>
           <Link href="/products">Products</Link>
         </li>
-        <li>
+       {
+        user && <div className="flex">
+          <li>
           <Link href="/addProduct">Add Products</Link>
         </li>
         <li>
           <Link href="/manageProduct">Manage Product</Link>
         </li>
+        </div>
+       }
       </div>
     </>
   );
