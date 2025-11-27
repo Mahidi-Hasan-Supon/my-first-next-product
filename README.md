@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+My First Next Product
 
-## Getting Started
+A modern product showcase application built with Next.js 14, using dynamic routing, API integration, responsive UI, and clean folder structure.
 
-First, run the development server:
+🚀 Features
 
-```bash
+⚡ Next.js App Router based architecture
+
+🎨 Tailwind CSS for responsive UI
+
+🔗 Dynamic Product Routing (/products/[productId])
+
+🌐 External API Fetching (Node/Express backend)
+
+🖼️ Next/Image optimized images
+
+🔁 Reusable Components
+
+🧩 Clean & Organized Code Structure
+
+🔥 Fast performance + SEO friendly
+
+🛠️ Technologies Used
+Frontend
+
+Next.js 14 (App Router)
+
+React
+
+Tailwind CSS
+
+Next/Image
+
+Next/Link
+
+Backend (Proxy Server)
+
+Node.js + Express
+
+CORS
+
+dotenv
+
+nodemon (development)
+
+Custom routes such as:
+
+GET /latest-products
+
+GET /products/:id
+
+📁 Folder Structure
+my-first-next-product/
+│── app/
+│   ├── layout.js
+│   ├── globals.css
+│   ├── page.js
+│   └── products/
+│        └── [productId]/
+│              └── page.js
+│
+│── components/
+│── public/
+│── package.json
+│── README.md
+
+⚙️ Environment Variables
+
+ফ্রন্টএন্ড .env.local:
+
+NEXT_PUBLIC_API_URL=http://localhost:5000
+
+
+ব্যাকএন্ড .env:
+
+PORT=5000
+
+▶️ Getting Started
+Clone the repository
+git clone https://github.com/Mahidi-Hasan-Supon/my-first-next-product.git
+cd my-first-next-product
+
+Install packages
+npm install
+
+Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Server will start at:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## Learn More
+🖥️ API Setup (Backend Server)
 
-To learn more about Next.js, take a look at the following resources:
+If using your own Node/Express server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+git clone https://github.com/Mahidi-Hasan-Supon/my-product-next-server.git
+cd my-product-next-server
+npm install
+npm start
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+Backend runs at:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+http://localhost:5000
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📚 Pages Explained
+Home Page
+
+Shows latest products
+
+Featured product section
+
+API fetched content
+
+Product Details Page
+
+URL:
+
+/products/[productId]
+
+
+Features:
+
+Dynamic routing
+
+Product info based on ID
+
+🧪 Future Improvements
+
+🔐 Add authentication (login/register)
+
+🛒 Add cart system
+
+📦 Add admin dashboard
+
+⭐ Add product rating/review system
