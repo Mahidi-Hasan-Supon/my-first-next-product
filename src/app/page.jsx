@@ -1,13 +1,30 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default async function Home() {
-  const res = await fetch(
-    "https://my-product-next-server.vercel.app/latest-products"
-  );
-  const datas = await res.json();
-  const featured = datas && datas.length ? datas[0] : null;
+export default function Home() {
+  const [datas, setDatas] = useState([]);
+  const [featured, setFeatured] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    fetch("https://my-product-next-server.vercel.app/latest-products")
+      .then((res) => res.json())
+      .then((data) => {
+        setDatas(data);
+        setFeatured(data[0] || null);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p className="text-center py-20">Loading...</p>;
+ 
   return (
     <div className="w-full max-w-[1440px] mx-auto py-10 px-4 sm:px-6 lg:px-12">
       {/* Banner */}
@@ -15,7 +32,7 @@ export default async function Home() {
         <div
           className={`h-[360px] sm:h-[420px] md:h-[480px] lg:h-[560px] w-full bg-gray-100`}
           style={
-            featured && featured.image
+            featured?.image
               ? {
                   backgroundImage: `linear-gradient(rgba(3,7,18,0.45), rgba(3,7,18,0.25)), url(${featured.image})`,
                   backgroundSize: "cover",
@@ -43,7 +60,6 @@ export default async function Home() {
                 <Link
                   href="/products"
                   className="inline-flex items-center justify-center rounded-lg px-5 py-3 bg-white/90 text-amber-600 font-semibold shadow-sm hover:bg-white transition"
-                  aria-label="Browse all products"
                 >
                   Browse all products
                 </Link>
@@ -80,9 +96,7 @@ export default async function Home() {
               />
             </figure>
             <div className="p-4">
-              <h2 className="text-xl sm:text-2xl font-semibold">
-                {data.title}
-              </h2>
+              <h2 className="text-xl sm:text-2xl font-semibold">{data.title}</h2>
               <p className="text-sm mt-1">{data.short_description}</p>
               <div className="mt-3 flex justify-between items-center">
                 <span className="text-md font-bold">Price: {data.price}</span>
@@ -100,23 +114,12 @@ export default async function Home() {
 
       {/* Why Choose Us */}
       <section className="py-16 bg-gray-900 text-white">
-        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">
-          Why Choose Us?
-        </h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">Why Choose Us?</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4 sm:px-0">
           {[
-            {
-              title: "Best Quality",
-              desc: "We ensure premium quality products.",
-            },
-            {
-              title: "Fast Delivery",
-              desc: "Quick and reliable shipping service.",
-            },
-            {
-              title: "Secure Payment",
-              desc: "Your transactions are safe with us.",
-            },
+            { title: "Best Quality", desc: "We ensure premium quality products." },
+            { title: "Fast Delivery", desc: "Quick and reliable shipping service." },
+            { title: "Secure Payment", desc: "Your transactions are safe with us." },
             { title: "24/7 Support", desc: "We are always here to help." },
           ].map((item, i) => (
             <div key={i} className="text-center p-6 bg-gray-800 rounded-xl">
@@ -128,17 +131,10 @@ export default async function Home() {
       </section>
 
       {/* Product Categories */}
-      <section className="py-14 my-20  bg-amber-50 rounded-4xl">
-        <h2 className="text-2xl md:text-3xl text-black font-bold mb-8  text-center">
-          Product Categories
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 px-4 sm:px-0 ">
-          {[
-            "Electronics",
-            "Fashion",
-            "Home Appliances",
-            "Bags & Accessories",
-          ].map((cat, i) => (
+      <section className="py-14 my-20 bg-amber-50 rounded-4xl">
+        <h2 className="text-2xl md:text-3xl text-black font-bold mb-8 text-center">Product Categories</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 px-4 sm:px-0">
+          {["Electronics", "Fashion", "Home Appliances", "Bags & Accessories"].map((cat, i) => (
             <div
               key={i}
               className="p-6 bg-white shadow-sm rounded-xl border text-center hover:shadow-md hover:border-amber-400 hover:shadow-2xl transition"
@@ -156,48 +152,19 @@ export default async function Home() {
         </h2>
         <div className="grid grid-cols-1 hover:shadow-2xl sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 sm:px-0">
           {[
-            {
-              name: "Mahid Hasan",
-              role: "Verified Buyer",
-              review:
-                "Amazing product quality! The delivery was extremely fast and the support team was very helpful.",
-              img: "https://i.pravatar.cc/150?img=1",
-            },
-            {
-              name: "Nusrat Jahan",
-              role: "Regular Customer",
-              review:
-                "I love the overall service. The price is fair, and the products always match the description.",
-              img: "https://i.pravatar.cc/150?img=2",
-            },
-            {
-              name: "Arman Siddique",
-              role: "Premium Member",
-              review:
-                "Best online shopping experience ever. I highly recommend it to everyone!",
-              img: "https://i.pravatar.cc/150?img=3",
-            },
+            { name: "Mahid Hasan", role: "Verified Buyer", review: "Amazing product quality! The delivery was extremely fast and the support team was very helpful.", img: "https://i.pravatar.cc/150?img=1" },
+            { name: "Nusrat Jahan", role: "Regular Customer", review: "I love the overall service. The price is fair, and the products always match the description.", img: "https://i.pravatar.cc/150?img=2" },
+            { name: "Arman Siddique", role: "Premium Member", review: "Best online shopping experience ever. I highly recommend it to everyone!", img: "https://i.pravatar.cc/150?img=3" },
           ].map((t, i) => (
-            <div
-              key={i}
-              className="bg-gray-50 border rounded-xl p-6 shadow-sm hover:shadow-md transition"
-            >
+            <div key={i} className="bg-gray-50 border rounded-xl p-6 shadow-sm hover:shadow-md transition">
               <div className="flex items-center gap-4">
-                <img
-                  src={t.img}
-                  alt={t.name}
-                  className="w-14 h-14 rounded-full object-cover border"
-                />
+                <img src={t.img} alt={t.name} className="w-14 h-14 rounded-full object-cover border" />
                 <div>
-                  <h3 className="font-semibold text-lg text-gray-900">
-                    {t.name}
-                  </h3>
+                  <h3 className="font-semibold text-lg text-gray-900">{t.name}</h3>
                   <p className="text-sm text-gray-500">{t.role}</p>
                 </div>
               </div>
-              <p className="mt-4 text-gray-600 text-sm leading-relaxed">
-                “{t.review}”
-              </p>
+              <p className="mt-4 text-gray-600 text-sm leading-relaxed">“{t.review}”</p>
               <div className="mt-4 flex text-amber-500">
                 <span>⭐️⭐️⭐️⭐️⭐️</span>
               </div>

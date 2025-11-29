@@ -26,7 +26,6 @@ const AddProducts = () => {
       email: user?.email,
     };
     console.log(product.photo);
-
     // Backend kaj
     const res = await fetch(
       "https://my-product-next-server.vercel.app/products",
